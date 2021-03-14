@@ -11,13 +11,14 @@ function makePageForEpisodes(episodeList) {
   let div = document.createElement('div');
   let img = document.createElement('img');
   let p = document.createElement('p');
-  img.src = `${episode.image.medium}`
+  let episodeCode = `S0${episode.season}E0${episode.number}`;
   div.classList.add('card');
   div.appendChild(h1);
   div.appendChild(img);
   div.appendChild(p);
-  h1.innerHTML = `${episode.name}`;
+  h1.innerHTML = `${episode.name} ${episodeCode}`;
   p.innerHTML = `${episode.summary}`
+  img.src = `${episode.image.medium}`
   rootElem.appendChild(div);
   
 
