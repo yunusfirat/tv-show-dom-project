@@ -7,21 +7,37 @@ function setup() {
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   episodeList.forEach(episode => {
-  let h1 = document.createElement('h1');
-  let div = document.createElement('div');
-  let img = document.createElement('img');
-  let p = document.createElement('p');
-  let episodeCode = `S0${episode.season}E0${episode.number}`;
-  div.classList.add('card');
-  div.appendChild(h1);
-  div.appendChild(img);
-  div.appendChild(p);
-  h1.innerHTML = `${episode.name} ${episodeCode}`;
-  p.innerHTML = `${episode.summary}`
-  img.src = `${episode.image.medium}`
-  rootElem.appendChild(div);
-  
-
+    let h1 = document.createElement('h1');
+    let div = document.createElement('div');
+    let img = document.createElement('img');
+    let p = document.createElement('p');
+    let episodeCode = `S0${episode.season}E0${episode.number}`;
+    div.classList.add('card');
+    div.appendChild(h1);
+    div.appendChild(img);
+    div.appendChild(p);
+    h1.innerHTML = `${episode.name} - ${episodeCode}`;
+    p.innerHTML = `${episode.summary}`
+    img.src = `${episode.image.medium}`
+    rootElem.appendChild(div);
   })
+  let input = document.querySelector('#moviesearch')
+  input.addEventListener('keyup', function () {
+    let cards = document.querySelectorAll(".card");
+    let filter = input.value.toUpperCase();
+    cards.forEach(card => {
+      let h1Value = card.childNodes[0].textContent || card.childNodes[0].innerHTML
+      let pValue = card.childNodes[2].textContent || card.childNodes[2].innerHTML;
+      if (h1Value.toUpperCase().indexOf(filter) > -1 || pValue.toUpperCase().indexOf(filter) > -1) {
+      } else {
+        card.style.display = "none";
+      }
+    })
+  
+  })
+
 }
+
+
+
 window.onload = setup;
