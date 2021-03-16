@@ -33,9 +33,16 @@ h1 {
 #moviesearch {
   margin-bottom: 5px;
   padding: 3px;
-  margin-right: 20px;
+  margin-right: 40px;
+  margin-left: 180px;
 }
 .flex {
   display: flex;
   align-items:center;
+}
+
+#selectmovies {
+  padding: 4px;
+  margin-bottom: 5px;
+
 }
