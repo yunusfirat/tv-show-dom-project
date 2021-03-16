@@ -32,5 +32,10 @@ h1 {
 
 #moviesearch {
   margin-bottom: 5px;
-  padding: 5px;
+  padding: 3px;
+  margin-right: 20px;
+}
+.flex {
+  display: flex;
+  align-items:center;
 }
