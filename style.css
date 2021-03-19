@@ -85,10 +85,15 @@ h1 {
 }
 .footer {
   margin-top: 10px;
+  margin-bottom: 30px;
   text-align: center;
-  font-weight: 100;
+  font-weight: 500;
   font-size: 20px;
   overflow: hidden;
+  bottom: 0;
+  right: 0;
+
+
 }
 
 .movieLink{
@@ -179,4 +184,23 @@ input:focus { background:rgba(255, 255, 255, 0.8); }
 #options li:hover {
   background-color:#39f;
   color:white;
+}
+
+@media only screen and (max-width: 690px) {
+  #root {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  .card {
+    width: 40%;
+    height: 60%;
+    padding: 78px;
+
+  }
+  img {
+    width: 80%;
+  }
+  p{
+    font-size: 12px;
+  }
 }
