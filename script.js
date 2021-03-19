@@ -2,36 +2,45 @@
 function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
-  selectItem(allEpisodes);
 }
 
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   episodeList.forEach(episode => {
+    const seasonNumber = episode.season > 9 ? episode.season : "0" + episode.season
+    const episodeNumber = episode.number > 9 ? episode.number : "0" + episode.number
     let h1 = document.createElement('h1');
     let div = document.createElement('div');
     let img = document.createElement('img');
     let p = document.createElement('p');
-    let episodeCode = `S0${episode.season}E0${episode.number}`;
+    let options = document.createElement('option')
+    const episodeCode = `S${seasonNumber}E${episodeNumber}`;
+    let select = document.querySelector('#selectmovies');
     div.classList.add('card');
     h1.classList.add('h1');
     div.appendChild(h1);
     div.appendChild(img);
     div.appendChild(p);
-    h1.innerHTML = `${episode.name} - ${episodeCode}`;
     p.innerHTML = `${episode.summary}`
     img.src = `${episode.image.medium}`
+    h1.innerHTML = `${episode.name} - ${episodeCode}`;
+    options.value = `${h1.innerHTML}`
+    options.innerHTML = `${h1.innerHTML}`
+    select.appendChild(options);
     rootElem.appendChild(div);
   })
+
   let input = document.querySelector('#moviesearch')
-  input.addEventListener('keyup', function () {
+  input.addEventListener('keyup', findmovies) 
+  
+    function findmovies () {
     let cards = document.querySelectorAll(".card");
     let count = 0;
     let filter = input.value.toUpperCase();
     cards.forEach(card => {
-    let h1Value = card.childNodes[0].textContent || card.childNodes[0].innerHTML
-    let pValue = card.childNodes[2].textContent || card.childNodes[2].innerHTML;
-    let foundmovies = document.getElementById('moviescount');
+      let h1Value = card.childNodes[0].textContent || card.childNodes[0].innerHTML
+      let pValue = card.childNodes[2].textContent || card.childNodes[2].innerHTML;
+      let foundmovies = document.getElementById('moviescount');
       if (h1Value.toUpperCase().indexOf(filter) > -1 || pValue.toUpperCase().indexOf(filter) > -1) {
         card.style.display = "";
       } else {
@@ -43,37 +52,32 @@ function makePageForEpisodes(episodeList) {
       }
       foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} movies`
     })
+  }
 
-  })
-}
-
-function selectItem(episodes){
-  episodes.forEach(episode => {
-    let select = document.querySelector('#selectmovies');
-    let options = document.createElement('option')
-    let h1 = document.querySelector('.h1')
-    let episodeCode = `S0${episode.season}E0${episode.number}`;
-    h1.innerHTML = `${episode.name} - ${episodeCode}`;
-    options.value = `${h1.innerHTML}`
-    options.innerHTML = `${h1.innerHTML}`
-    select.appendChild(options);
-  })
-    let select = document.querySelector('#selectmovies');
-    select.addEventListener('click', function(event){
-    event.preventDefault;
+  let select = document.querySelector('#selectmovies');
+  select.addEventListener('change', findmovie)
+  
+  function findmovie(e) {
     let cards = document.querySelectorAll(".card");
-    let optionsvalue = select.options[select.options.selectedIndex].value;
+    let optionsvalue = e.currentTarget.value.toLowerCase();
+    console.log(optionsvalue);
     cards.forEach(card => {
-    let h1Value = card.childNodes[0].innerHTML;
-      if(optionsvalue.includes(h1Value)){
+      let h1Value = card.textContent.toLowerCase()
+      if (h1Value.includes(optionsvalue)) { 
         card.style.display = "";
-        card.style.width = "50%";
-      }else{
+      }else if(optionsvalue === ""){
+        card.style.display = "";
+        reset();
+      }
+       else {
         card.style.display = "none";
       }
     })
-    })
+  }
+}
 
+function reset(){
+  document.location.reload();
 }
 
 

@@ -1,8 +1,13 @@
 #root {
   display: grid;
   grid-template-columns: auto auto auto;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #7C3AED;
 }
 
+h1 {
+  text-align: center;
+}
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -11,7 +16,6 @@
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   font-size: 5px;
-  text-align: center;
   margin-bottom: 1rem;
 }
 
@@ -44,5 +48,22 @@ h1 {
 #selectmovies {
   padding: 4px;
   margin-bottom: 5px;
+
+}
+.footer {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 100;
+  font-size: medium;
+  position: fixed;
+}
+
+.movieLink{
+  font-size: 20px;
+  text-decoration: none;
+  text-align: left;
+}
+img {
+  width: 100%;
 
 }
