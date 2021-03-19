@@ -44,24 +44,33 @@ function makePageForEpisodes(episodeList) {
     let cards = document.querySelectorAll(".card");
     let optionsvalue = e.currentTarget.value.toLowerCase();
     let count = 0;
+    let message = document.querySelector(".message");
+    let footer = document.querySelector(".footer");
     cards.forEach(card => {
       let foundmovies = document.getElementById('moviescount');
-      let h1Value = card.textContent.toLowerCase()
-      if (h1Value.includes(optionsvalue)) {
+      let cardValue = card.textContent.toLowerCase()
+      if (cardValue.includes(optionsvalue)) {
+        message.style.display = "none";
         card.style.display = "";
         count++
         foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} movies`
       } else if (optionsvalue === "") {
-        card.style.display = "";
         reset();
-        count++
+        foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} movies`
+      } else {
+        card.style.display = "none";
         foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} movies`
       }
-      else {
-        card.style.display = "none";
-      }
     })
+    if(count == 0){
+      message.style.display = "";
+      message.style.display = "margin-top:100px;"
+      footer.style.display = "none"
+    }
   }
+
+  
+
 }
 
 function reset() {
