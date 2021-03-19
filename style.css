@@ -84,14 +84,14 @@ h1 {
 
 }
 .footer {
-  margin-top: 10px;
-  margin-bottom: 30px;
   text-align: center;
   font-weight: 500;
   font-size: 20px;
   overflow: hidden;
   bottom: 0;
   right: 0;
+  background-color: cadetblue;
+  padding: 30px;
 
 
 }
