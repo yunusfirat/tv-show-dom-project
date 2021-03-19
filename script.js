@@ -13,6 +13,7 @@ function makePageForEpisodes(episodeList) {
     let div = document.createElement('div');
     let img = document.createElement('img');
     let p = document.createElement('p');
+    let a = document.createElement('a')
     let options = document.createElement('option')
     const episodeCode = `S${seasonNumber}E${episodeNumber}`;
     let select = document.querySelector('#selectmovies');
@@ -21,62 +22,49 @@ function makePageForEpisodes(episodeList) {
     div.appendChild(h1);
     div.appendChild(img);
     div.appendChild(p);
+    div.appendChild(a);
     p.innerHTML = `${episode.summary}`
     img.src = `${episode.image.medium}`
     h1.innerHTML = `${episode.name} - ${episodeCode}`;
     options.value = `${h1.innerHTML}`
     options.innerHTML = `${h1.innerHTML}`
+    a.href = `${episode.url}`;
+    a.innerHTML = "Click for details"
     select.appendChild(options);
     rootElem.appendChild(div);
   })
 
-  let input = document.querySelector('#moviesearch')
-  input.addEventListener('keyup', findmovies) 
-  
-    function findmovies () {
-    let cards = document.querySelectorAll(".card");
-    let count = 0;
-    let filter = input.value.toUpperCase();
-    cards.forEach(card => {
-      let h1Value = card.childNodes[0].textContent || card.childNodes[0].innerHTML
-      let pValue = card.childNodes[2].textContent || card.childNodes[2].innerHTML;
-      let foundmovies = document.getElementById('moviescount');
-      if (h1Value.toUpperCase().indexOf(filter) > -1 || pValue.toUpperCase().indexOf(filter) > -1) {
-        card.style.display = "";
-      } else {
-        card.style.display = "none";
-      }
-      let check = card.style.display === "none"
-      if (check === false) {
-        count = count + 1;
-      }
-      foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} movies`
-    })
-  }
-
   let select = document.querySelector('#selectmovies');
+  let input = document.querySelector('#moviesearch');
+
+  input.addEventListener('keyup', findmovie)
   select.addEventListener('change', findmovie)
-  
+
   function findmovie(e) {
     let cards = document.querySelectorAll(".card");
     let optionsvalue = e.currentTarget.value.toLowerCase();
-    console.log(optionsvalue);
+    let count = 0;
     cards.forEach(card => {
+      let foundmovies = document.getElementById('moviescount');
       let h1Value = card.textContent.toLowerCase()
-      if (h1Value.includes(optionsvalue)) { 
+      if (h1Value.includes(optionsvalue)) {
         card.style.display = "";
-      }else if(optionsvalue === ""){
+        count++
+        foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} movies`
+      } else if (optionsvalue === "") {
         card.style.display = "";
         reset();
+        count++
+        foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} movies`
       }
-       else {
+      else {
         card.style.display = "none";
       }
     })
   }
 }
 
-function reset(){
+function reset() {
   document.location.reload();
 }
 
