@@ -56,9 +56,21 @@ h1 {
 
 #moviesearch {
   margin-bottom: 5px;
-  padding: 3px;
+  padding: 6px;
   margin-right: 40px;
-  margin-left: 180px;
+  margin-left: 40px;
+  border-radius: 2px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  width: 100%;
+  min-width: 15ch;
+  max-width: 90ch;
+}
+
+#moviesearch::placeholder { 
+  color: rgba(196, 38, 125, 0.8);
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 5px;
 }
 
 #selectmovies {
@@ -104,12 +116,62 @@ a{
   padding: 2px;
 }
 #moviescount {
-  color:#fff
-}
-
-input {
-  border-radius: 2px;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  color:#fff;
+  margin-left: 4rem;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 input:focus { background:rgba(255, 255, 255, 0.8); }
+
+
+/* select option css */
+#selectmovies {
+  width: 100%;
+  min-width: 15ch;
+  max-width: 42ch;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.25em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+
+#selectmovies::after {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: var(--select-arrow);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+
+
+
+#options {
+  display:none;
+  position:absolute;
+  top:100%;
+  right:0;
+  left:0;
+  z-index:999;
+  margin:0 0;
+  padding:0 0;
+  list-style:none;
+  border:1px solid #ccc;
+  background-color:white;
+  -webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow:0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow:0 1px 2px rgba(0, 0, 0, 0.2);
+}
+#options li {
+  padding:0 6px;
+  margin:0 0;
+  padding:0 10px;
+}
+#options li:hover {
+  background-color:#39f;
+  color:white;
+}

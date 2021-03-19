@@ -27,7 +27,7 @@ function makePageForEpisodes(episodeList) {
     img.src = `${episode.image.medium}`
     h1.innerHTML = `${episode.name} - ${episodeCode}`;
     options.value = `${h1.innerHTML}`
-    options.innerHTML = `${h1.innerHTML}`
+    options.innerHTML = `${episodeCode} - ${episode.name}`
     a.href = `${episode.url}`;
     a.innerHTML = "Click for details"
     select.appendChild(options);
