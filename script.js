@@ -41,6 +41,8 @@ function sortoptions(firstShow, secondShow){
 
   function getvalue(e) {
     const rootElem = document.getElementById("root");
+    let foundmovies = document.getElementById('moviescount');
+    foundmovies.innerHTML = ""
     rootElem.innerHTML = ""
     let optionsvalue = e.currentTarget.value.toLowerCase();
     console.log(optionsvalue);
@@ -74,7 +76,7 @@ function makePageForEpisodes(episodeList) {
   let select = document.querySelector('#selectmovies');
   let foundmovies = document.getElementById('moviescount');
   foundmovies.innerHTML = `Displaying ${episodeList.length}/${episodeList.length} episodes`
-  select.innerHTML = "All episodes"
+  select.innerHTML = `<option id="option" value="">Select Episodes</option>`
   rootElem.innerHTML = ""
   episodeList.forEach(episode => {
     const seasonNumber = episode.season > 9 ? episode.season : "0" + episode.season
