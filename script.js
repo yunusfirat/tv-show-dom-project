@@ -3,9 +3,11 @@ function setup() {
   // const allEpisodes = getAllEpisodes();
   const allShows = getAllShows()
   getShowId(allShows)
-  // makePageForEpisodes(allEpisodes);
+  // let url = `https://api.tvmaze.com/shows/82/episodes`
+  // makePageForEpisodes(getFactAjax(url));
+  // getFactAjax(url);
+  
 }
-
 
 function getShowId(allShows) {
   const flex = document.querySelector('.flex')
@@ -38,9 +40,14 @@ function sortoptions(firstShow, secondShow){
   view.addEventListener('change', getvalue)
 
   function getvalue(e) {
+    const rootElem = document.getElementById("root");
+    rootElem.innerHTML = ""
     let optionsvalue = e.currentTarget.value.toLowerCase();
-    let url = `https://api.tvmaze.com/shows/${optionsvalue}/episodes`
-    getFactAjax(url)
+    console.log(optionsvalue);
+    if(optionsvalue){
+      let url = `https://api.tvmaze.com/shows/${optionsvalue}/episodes`
+      getFactAjax(url)
+    }
   }
 }
 
@@ -64,6 +71,11 @@ function getFactAjax(url) {
 
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
+  let select = document.querySelector('#selectmovies');
+  let foundmovies = document.getElementById('moviescount');
+  foundmovies.innerHTML = `Displaying ${episodeList.length}/${episodeList.length} episodes`
+  select.innerHTML = "All episodes"
+  rootElem.innerHTML = ""
   episodeList.forEach(episode => {
     const seasonNumber = episode.season > 9 ? episode.season : "0" + episode.season
     const episodeNumber = episode.number > 9 ? episode.number : "0" + episode.number
@@ -92,10 +104,10 @@ function makePageForEpisodes(episodeList) {
     rootElem.appendChild(div);
   })
 
-  let select = document.querySelector('#selectmovies');
+  // let select = document.querySelector('#selectmovies');
   let input = document.querySelector('#moviesearch');
 
-  input.addEventListener('keyup', findmovie)
+  input.addEventListener('input', findmovie)
   select.addEventListener('change', findmovie)
 
   function findmovie(e) {
