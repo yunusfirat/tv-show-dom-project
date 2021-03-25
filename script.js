@@ -1,8 +1,22 @@
 //You can edit ALL of the code here
-function setup() {
-  const allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
+// function setup() {
+//   const allEpisodes = getAllEpisodes();
+//   makePageForEpisodes(allEpisodes);
+// }
+
+let url = "https://api.tvmaze.com/shows/22036/episodes";
+function getFactAjax(url){
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    makePageForEpisodes(data)
+
+  })
+  .catch(err => console.log(err));
 }
+
+
+
 
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
@@ -77,5 +91,5 @@ function reset() {
   document.location.reload();
 }
 
-
-window.onload = setup;
+getFactAjax(url)
+// window.onload = setup;
