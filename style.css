@@ -78,11 +78,6 @@ h1 {
   opacity: 1;
 }
 
-#selectmovies {
-  padding: 4px;
-  margin-bottom: 5px;
-
-}
 .footer {
   text-align: center;
   font-weight: 500;
@@ -137,6 +132,22 @@ input:focus { background:rgba(255, 255, 255, 0.8); }
 
 /* select option css */
 #selectmovies {
+  margin-bottom: 5px;
+  width: 100%;
+  min-width: 15ch;
+  max-width: 42ch;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.25em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+.view {
+  margin-bottom: 5px;
+  margin-right: 10px;
   width: 100%;
   min-width: 15ch;
   max-width: 42ch;

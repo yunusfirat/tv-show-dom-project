@@ -1,20 +1,64 @@
 //You can edit ALL of the code here
-// function setup() {
-//   const allEpisodes = getAllEpisodes();
-//   makePageForEpisodes(allEpisodes);
-// }
-
-let url = "https://api.tvmaze.com/shows/22036/episodes";
-function getFactAjax(url){
-  fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    makePageForEpisodes(data)
-
-  })
-  .catch(err => console.log(err));
+function setup() {
+  // const allEpisodes = getAllEpisodes();
+  const allShows = getAllShows()
+  getShowId(allShows)
+  // makePageForEpisodes(allEpisodes);
 }
 
+
+function getShowId(allShows) {
+  const flex = document.querySelector('.flex')
+  let selectElement = document.createElement('select');
+  selectElement.innerHTML = `<option>Please select show to view.</option>`
+  selectElement.classList.add('view')
+  let sortedshows = allShows.sort(sortoptions)
+  sortedshows.forEach(show => {
+  let optionElement = document.createElement('option');
+  optionElement.innerHTML = `${show.name}`
+  optionElement.value = `${show.id}`
+  selectElement.appendChild(optionElement)
+  flex.insertAdjacentElement('afterBegin', selectElement);
+  })
+
+function sortoptions(firstShow, secondShow){
+    let first = firstShow.name.toLowerCase();
+    let second = secondShow.name.toLowerCase();
+    if(first > second){
+      return 1
+    }else  if (second > first){
+      return -1
+    }else {
+      return 0
+    }
+
+}
+
+  let view = document.querySelector('.view');
+  view.addEventListener('change', getvalue)
+
+  function getvalue(e) {
+    let optionsvalue = e.currentTarget.value.toLowerCase();
+    let url = `https://api.tvmaze.com/shows/${optionsvalue}/episodes`
+    getFactAjax(url)
+  }
+}
+
+function getFactAjax(url) {
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`something happen unexpected ${response.status}`)
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data)
+      makePageForEpisodes(data)
+
+    })
+    .catch(err => console.log(err));
+}
 
 
 
@@ -67,29 +111,27 @@ function makePageForEpisodes(episodeList) {
         message.style.display = "none";
         card.style.display = "";
         count++
-        foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} movies`
+        foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} episodes`
       } else if (optionsvalue === "") {
         reset();
-        foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} movies`
+        foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} episodes`
       } else {
         card.style.display = "none";
-        foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} movies`
+        foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} episodes`
       }
     })
-    if(count == 0){
+    if (count == 0) {
       message.style.display = "";
       message.style.display = "margin-top:100px;"
       footer.style.display = "none"
     }
   }
 
-  
+
 
 }
 
 function reset() {
   document.location.reload();
 }
-
-getFactAjax(url)
-// window.onload = setup;
+window.onload = setup;
