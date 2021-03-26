@@ -110,8 +110,14 @@ function makePageForEpisodes(episodeList) {
   let input = document.querySelector('#moviesearch');
 
   input.addEventListener('input', findmovie)
+  input.addEventListener('click', findmovie)
+  input.addEventListener('click',resetsearch)
   select.addEventListener('change', findmovie)
 
+  function resetsearch(){
+    let select = document.querySelector('#selectmovies');
+    select.selectedIndex = 0
+  }
   function findmovie(e) {
     let cards = document.querySelectorAll(".card");
     let optionsvalue = e.currentTarget.value.toLowerCase();
@@ -129,7 +135,7 @@ function makePageForEpisodes(episodeList) {
       } else if (optionsvalue === "") {
         reset();
         foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} episodes`
-      } else {
+      }else {
         card.style.display = "none";
         foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} episodes`
       }
