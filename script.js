@@ -6,7 +6,7 @@ function setup() {
   // let url = `https://api.tvmaze.com/shows/82/episodes`
   // makePageForEpisodes(getFactAjax(url));
   // getFactAjax(url);
-  
+
 }
 
 function getShowId(allShows) {
@@ -16,25 +16,25 @@ function getShowId(allShows) {
   selectElement.classList.add('view')
   let sortedshows = allShows.sort(sortoptions)
   sortedshows.forEach(show => {
-  let optionElement = document.createElement('option');
-  optionElement.innerHTML = `${show.name}`
-  optionElement.value = `${show.id}`
-  selectElement.appendChild(optionElement)
-  flex.insertAdjacentElement('afterBegin', selectElement);
+    let optionElement = document.createElement('option');
+    optionElement.innerHTML = `${show.name}`
+    optionElement.value = `${show.id}`
+    selectElement.appendChild(optionElement)
+    flex.insertAdjacentElement('afterBegin', selectElement);
   })
 
-function sortoptions(firstShow, secondShow){
+  function sortoptions(firstShow, secondShow) {
     let first = firstShow.name.toLowerCase();
     let second = secondShow.name.toLowerCase();
-    if(first > second){
+    if (first > second) {
       return 1
-    }else  if (second > first){
+    } else if (second > first) {
       return -1
-    }else {
+    } else {
       return 0
     }
 
-}
+  }
 
   let view = document.querySelector('.view');
   view.addEventListener('change', getvalue)
@@ -46,7 +46,7 @@ function sortoptions(firstShow, secondShow){
     rootElem.innerHTML = ""
     let optionsvalue = e.currentTarget.value.toLowerCase();
     console.log(optionsvalue);
-    if(optionsvalue){
+    if (optionsvalue) {
       let url = `https://api.tvmaze.com/shows/${optionsvalue}/episodes`
       getFactAjax(url)
     }
@@ -111,10 +111,10 @@ function makePageForEpisodes(episodeList) {
 
   input.addEventListener('input', findmovie)
   input.addEventListener('click', findmovie)
-  input.addEventListener('click',resetsearch)
+  input.addEventListener('click', resetsearch)
   select.addEventListener('change', findmovie)
 
-  function resetsearch(){
+  function resetsearch() {
     let select = document.querySelector('#selectmovies');
     select.selectedIndex = 0
   }
@@ -135,7 +135,7 @@ function makePageForEpisodes(episodeList) {
       } else if (optionsvalue === "") {
         reset();
         foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} episodes`
-      }else {
+      } else {
         card.style.display = "none";
         foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} episodes`
       }
