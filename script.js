@@ -22,10 +22,10 @@ displayAll.forEach(show => {
     <div class="summary"><p>${show.summary}</p></div>
     <div class= "smallcard"> 
       <ul>
-        <li><strong>Rated</strong> :${show.rating.average}<li>
-        <li><strong>Genres</strong> :${show.genres}<li>
-        <li><strong>Status</strong> :${show.status}<li>
-        <li><strong>Runtime</strong> :${show.runtime}<li>
+        <li><strong>Rated</strong> : ${show.rating.average}<li>
+        <li><strong>Genres</strong> : ${show.genres}<li>
+        <li><strong>Status</strong> : ${show.status}<li>
+        <li><strong>Runtime</strong> : ${show.runtime}<li>
       <ul>   
     </div>
   </div>`
@@ -36,19 +36,55 @@ let headers = document.querySelectorAll('.header')
 
 headers.forEach(header => {
   header.addEventListener('click', function(e){
-    let optionsvalue= e.currentTarget.dataset
-    console.log(title);
+    let selectvalue= e.currentTarget.dataset
+    let selectValue  = selectvalue.id;
+    console.log(selectValue);
     const rootElem = document.getElementById("root");
     let foundmovies = document.getElementById('moviescount');
+    selectmovies.style.display = "";
     container.style.display = "none"
-    foundmovies.innerHTML = ""
     rootElem.innerHTML = ""
-    if (optionsvalue) {
-      let url = `https://api.tvmaze.com/shows/${optionsvalue}/episodes`
+    if (selectValue) {
+      let url = `https://api.tvmaze.com/shows/${selectValue}/episodes`
       getFactAjax(url)
     }
     })
 })
+
+let input = document.querySelector('#moviesearch');
+input.addEventListener('input', findepisode)
+
+function findepisode(e) {
+  let showcards = document.querySelectorAll(".showcard");
+  let optionsvalue = e.currentTarget.value.toLowerCase();
+  let count = 0;
+  let message = document.querySelector(".message");
+  let footer = document.querySelector(".footer");
+  showcards.forEach(card => {
+    let foundmovies = document.getElementById('moviescount');
+    let cardValue = card.textContent.toLowerCase()
+    if (cardValue.includes(optionsvalue)) {
+      message.style.display = "none";
+      card.style.display = "";
+      count++
+      foundmovies.innerHTML = `Displaying ${count}/${showcards.length} episodes`
+    } else if (optionsvalue === "") {
+      reset();
+      foundmovies.innerHTML = `Displaying ${count}/${showcards.length} episodes`
+    } else {
+      card.style.display = "none";
+      foundmovies.innerHTML = `Displaying ${count}/${showcards.length} episodes`
+    }
+  })
+  if (count == 0) {
+    message.style.display = "";
+    message.style.display = "margin-top:100px;"
+    footer.style.display = "none"
+  }
+}
+
+
+
 
 }
 
@@ -108,6 +144,8 @@ back.addEventListener('click',reset)
 
 
 function getFactAjax(url) {
+  let back = document.querySelector('.back')
+    back.style.display = "";
   fetch(url)
     .then(response => {
       if (!response.ok) {
