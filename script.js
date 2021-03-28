@@ -1,13 +1,58 @@
 //You can edit ALL of the code here
 function setup() {
-  // const allEpisodes = getAllEpisodes();
+  let back = document.querySelector('.back')
+  back.style.display = "none";
+  let selectmovies = document.querySelector('#selectmovies')
+  selectmovies.style.display = "none";
   const allShows = getAllShows()
   getShowId(allShows)
-  // let url = `https://api.tvmaze.com/shows/82/episodes`
-  // makePageForEpisodes(getFactAjax(url));
-  // getFactAjax(url);
+  displayAllShows(allShows);
+}
+
+function displayAllShows(displayAll){
+let container = document.querySelector('.container');
+displayAll.forEach(show => {
+  let image = show.image !== null ? show.image.medium : ""  
+  container.innerHTML +=
+   `<div class = "showcard">
+    <div class="showname">
+        <h1 class="header" data-id="${show.id}">${show.name}</h1>
+        <image src =${image} alt = ${show.name} />
+    </div>
+    <div class="summary"><p>${show.summary}</p></div>
+    <div class= "smallcard"> 
+      <ul>
+        <li><strong>Rated</strong> :${show.rating.average}<li>
+        <li><strong>Genres</strong> :${show.genres}<li>
+        <li><strong>Status</strong> :${show.status}<li>
+        <li><strong>Runtime</strong> :${show.runtime}<li>
+      <ul>   
+    </div>
+  </div>`
+
+
+})
+let headers = document.querySelectorAll('.header')
+
+headers.forEach(header => {
+  header.addEventListener('click', function(e){
+    let optionsvalue= e.currentTarget.dataset
+    console.log(title);
+    const rootElem = document.getElementById("root");
+    let foundmovies = document.getElementById('moviescount');
+    container.style.display = "none"
+    foundmovies.innerHTML = ""
+    rootElem.innerHTML = ""
+    if (optionsvalue) {
+      let url = `https://api.tvmaze.com/shows/${optionsvalue}/episodes`
+      getFactAjax(url)
+    }
+    })
+})
 
 }
+
+
 
 function getShowId(allShows) {
   const flex = document.querySelector('.flex')
@@ -42,8 +87,14 @@ function getShowId(allShows) {
   function getvalue(e) {
     const rootElem = document.getElementById("root");
     let foundmovies = document.getElementById('moviescount');
+    const container = document.querySelector('.container')
+    let selectmovies = document.querySelector('#selectmovies')
+    let back = document.querySelector('.back')
+    back.style.display = "";
+    selectmovies.style.display = "";
     foundmovies.innerHTML = ""
     rootElem.innerHTML = ""
+    container.style.display = "none"
     let optionsvalue = e.currentTarget.value.toLowerCase();
     console.log(optionsvalue);
     if (optionsvalue) {
@@ -52,6 +103,9 @@ function getShowId(allShows) {
     }
   }
 }
+let back = document.querySelector('.back')
+back.addEventListener('click',reset)
+
 
 function getFactAjax(url) {
   fetch(url)
@@ -106,19 +160,19 @@ function makePageForEpisodes(episodeList) {
     rootElem.appendChild(div);
   })
 
-  // let select = document.querySelector('#selectmovies');
   let input = document.querySelector('#moviesearch');
-
-  input.addEventListener('input', findmovie)
-  input.addEventListener('click', findmovie)
+  
+  input.addEventListener('input', findepisode)
+  input.addEventListener('click', findepisode)
   input.addEventListener('click', resetsearch)
-  select.addEventListener('change', findmovie)
+  select.addEventListener('change', findepisode)
 
   function resetsearch() {
     let select = document.querySelector('#selectmovies');
     select.selectedIndex = 0
   }
-  function findmovie(e) {
+  
+  function findepisode(e) {
     let cards = document.querySelectorAll(".card");
     let optionsvalue = e.currentTarget.value.toLowerCase();
     let count = 0;
