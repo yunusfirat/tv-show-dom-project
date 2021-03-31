@@ -8,9 +8,14 @@ function setup() {
   getShowId(allShows)
   displayAllShows(allShows);
 }
+function showcount(count){
+  let countElement = document.getElementById('countmovie');
+  countElement.innerHTML = `${count}`;
+}
 
 function displayAllShows(displayAll){
 let container = document.querySelector('.container');
+
 displayAll.forEach(show => {
   let image = show.image !== null ? show.image.medium : ""  
   container.innerHTML +=
@@ -32,15 +37,17 @@ displayAll.forEach(show => {
 
 
 })
-let headers = document.querySelectorAll('.header')
+  let countElement = document.getElementById('countmovie');
+  let countElementtwo = document.getElementById('countallmovie');
+  countElement.innerHTML = `${displayAll.length}`;
+  countElementtwo.innerHTML = `${displayAll.length} Shows`;
+  let headers = document.querySelectorAll('.header')
 
 headers.forEach(header => {
   header.addEventListener('click', function(e){
     let selectvalue= e.currentTarget.dataset
     let selectValue  = selectvalue.id;
-    console.log(selectValue);
     const rootElem = document.getElementById("root");
-    let foundmovies = document.getElementById('moviescount');
     selectmovies.style.display = "";
     container.style.display = "none"
     rootElem.innerHTML = ""
@@ -61,19 +68,18 @@ function findepisode(e) {
   let message = document.querySelector(".message");
   let footer = document.querySelector(".footer");
   showcards.forEach(card => {
-    let foundmovies = document.getElementById('moviescount');
     let cardValue = card.textContent.toLowerCase()
     if (cardValue.includes(optionsvalue)) {
       message.style.display = "none";
       card.style.display = "";
       count++
-      foundmovies.innerHTML = `Displaying ${count}/${showcards.length} episodes`
+    showcount(count)
     } else if (optionsvalue === "") {
       reset();
-      foundmovies.innerHTML = `Displaying ${count}/${showcards.length} episodes`
+    showcount(count)
     } else {
       card.style.display = "none";
-      foundmovies.innerHTML = `Displaying ${count}/${showcards.length} episodes`
+    showcount(count)
     }
   })
   if (count == 0) {
@@ -81,12 +87,7 @@ function findepisode(e) {
     message.style.display = "margin-top:100px;"
     footer.style.display = "none"
   }
-}
-
-
-
-
-}
+}}
 
 
 
@@ -122,17 +123,14 @@ function getShowId(allShows) {
 
   function getvalue(e) {
     const rootElem = document.getElementById("root");
-    let foundmovies = document.getElementById('moviescount');
     const container = document.querySelector('.container')
     let selectmovies = document.querySelector('#selectmovies')
     let back = document.querySelector('.back')
     back.style.display = "";
     selectmovies.style.display = "";
-    foundmovies.innerHTML = ""
     rootElem.innerHTML = ""
     container.style.display = "none"
     let optionsvalue = e.currentTarget.value.toLowerCase();
-    console.log(optionsvalue);
     if (optionsvalue) {
       let url = `https://api.tvmaze.com/shows/${optionsvalue}/episodes`
       getFactAjax(url)
@@ -154,20 +152,18 @@ function getFactAjax(url) {
       return response.json();
     })
     .then(data => {
-      console.log(data)
       makePageForEpisodes(data)
-
     })
     .catch(err => console.log(err));
 }
 
-
-
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   let select = document.querySelector('#selectmovies');
-  let foundmovies = document.getElementById('moviescount');
-  foundmovies.innerHTML = `Displaying ${episodeList.length}/${episodeList.length} episodes`
+  let countElement = document.getElementById('countmovie');
+  let countElementtwo = document.getElementById('countallmovie');
+  countElement.innerHTML = `${episodeList.length}`;
+  countElementtwo.innerHTML = `${episodeList.length} Episodes`;
   select.innerHTML = `<option id="option" value="">Select Episodes</option>`
   rootElem.innerHTML = ""
   episodeList.forEach(episode => {
@@ -210,26 +206,28 @@ function makePageForEpisodes(episodeList) {
     select.selectedIndex = 0
   }
   
+
+
   function findepisode(e) {
     let cards = document.querySelectorAll(".card");
     let optionsvalue = e.currentTarget.value.toLowerCase();
     let count = 0;
     let message = document.querySelector(".message");
     let footer = document.querySelector(".footer");
+
     cards.forEach(card => {
-      let foundmovies = document.getElementById('moviescount');
       let cardValue = card.textContent.toLowerCase()
       if (cardValue.includes(optionsvalue)) {
         message.style.display = "none";
         card.style.display = "";
         count++
-        foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} episodes`
+        showcount(count)
       } else if (optionsvalue === "") {
         reset();
-        foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} episodes`
+        showcount(count)
       } else {
         card.style.display = "none";
-        foundmovies.innerHTML = `Displaying ${count}/${rootElem.children.length} episodes`
+        showcount(count)
       }
     })
     if (count == 0) {
