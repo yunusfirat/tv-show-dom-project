@@ -711,61 +711,61 @@ function getAllShows() {
         }
       }
     },
-//     {
-//       "id": 396,
-//       "url": "http://www.tvmaze.com/shows/396/gravity-falls",
-//       "name": "Gravity Falls",
-//       "type": "Animation",
-//       "language": "English",
-//       "genres": [
-//         "Adventure",
-//         "Mystery",
-//         "Supernatural"
-//       ],
-//       "status": "Ended",
-//       "runtime": 30,
-//       "premiered": "2012-06-15",
-//       "officialSite": null,
-//       "schedule": {
-//         "time": "19:00",
-//         "days": [
-//           "Monday"
-//         ]
-//       },
-//       "rating": {
-//         "average": 9.1
-//       },
-//       "weight": 92,
-//       "network": {
-//         "id": 25,
-//         "name": "Disney XD",
-//         "country": {
-//           "name": "United States",
-//           "code": "US",
-//           "timezone": "America/New_York"
-//         }
-//       },
-//       "webChannel": null,
-//       "externals": {
-//         "tvrage": 31839,
-//         "thetvdb": 259972,
-//         "imdb": "tt1865718"
-//       },
-//       "image": {
-//         "medium": "http://static.tvmaze.com/uploads/images/medium_portrait/2/6140.jpg",
-//         "original": "http://static.tvmaze.com/uploads/images/original_untouched/2/6140.jpg"
-//       },
-//       "summary": "<p>Twin brother and sister Dipper and Mabel Pines are in for an unexpected adventure when they spend the summer with their great Uncle in the mysterious town of Gravity Falls, Oregon.</p>",
-//       "updated": 1585641052,
-//       "_links": {
-//         "self": {
-//           "href": "http://api.tvmaze.com/shows/396"
-//         },
-//         "previousepisode": {
-//           "href": "http://api.tvmaze.com/episodes/483406"
-//         }
-//       }
-//     },
+    {
+      "id": 396,
+      "url": "http://www.tvmaze.com/shows/396/gravity-falls",
+      "name": "Gravity Falls",
+      "type": "Animation",
+      "language": "English",
+      "genres": [
+        "Adventure",
+        "Mystery",
+        "Supernatural"
+      ],
+      "status": "Ended",
+      "runtime": 30,
+      "premiered": "2012-06-15",
+      "officialSite": null,
+      "schedule": {
+        "time": "19:00",
+        "days": [
+          "Monday"
+        ]
+      },
+      "rating": {
+        "average": 9.1
+      },
+      "weight": 92,
+      "network": {
+        "id": 25,
+        "name": "Disney XD",
+        "country": {
+          "name": "United States",
+          "code": "US",
+          "timezone": "America/New_York"
+        }
+      },
+      "webChannel": null,
+      "externals": {
+        "tvrage": 31839,
+        "thetvdb": 259972,
+        "imdb": "tt1865718"
+      },
+      "image": {
+        "medium": "http://static.tvmaze.com/uploads/images/medium_portrait/2/6140.jpg",
+        "original": "http://static.tvmaze.com/uploads/images/original_untouched/2/6140.jpg"
+      },
+      "summary": "<p>Twin brother and sister Dipper and Mabel Pines are in for an unexpected adventure when they spend the summer with their great Uncle in the mysterious town of Gravity Falls, Oregon.</p>",
+      "updated": 1585641052,
+      "_links": {
+        "self": {
+          "href": "http://api.tvmaze.com/shows/396"
+        },
+        "previousepisode": {
+          "href": "http://api.tvmaze.com/episodes/483406"
+        }
+      }
+    },
 //     {
 //       "id": 335,
 //       "url": "http://www.tvmaze.com/shows/335/sherlock",
