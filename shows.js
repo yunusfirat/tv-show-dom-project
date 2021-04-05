@@ -766,61 +766,61 @@ function getAllShows() {
         }
       }
     },
-//     {
-//       "id": 335,
-//       "url": "http://www.tvmaze.com/shows/335/sherlock",
-//       "name": "Sherlock",
-//       "type": "Scripted",
-//       "language": "English",
-//       "genres": [
-//         "Drama",
-//         "Crime",
-//         "Mystery"
-//       ],
-//       "status": "To Be Determined",
-//       "runtime": 90,
-//       "premiered": "2010-07-25",
-//       "officialSite": "http://www.bbc.co.uk/programmes/b018ttws",
-//       "schedule": {
-//         "time": "21:00",
-//         "days": [
-//           "Sunday"
-//         ]
-//       },
-//       "rating": {
-//         "average": 9.1
-//       },
-//       "weight": 99,
-//       "network": {
-//         "id": 12,
-//         "name": "BBC One",
-//         "country": {
-//           "name": "United Kingdom",
-//           "code": "GB",
-//           "timezone": "Europe/London"
-//         }
-//       },
-//       "webChannel": null,
-//       "externals": {
-//         "tvrage": 23433,
-//         "thetvdb": 176941,
-//         "imdb": "tt1475582"
-//       },
-//       "image": {
-//         "medium": "http://static.tvmaze.com/uploads/images/medium_portrait/171/428042.jpg",
-//         "original": "http://static.tvmaze.com/uploads/images/original_untouched/171/428042.jpg"
-//       },
-//       "summary": "<p>Sherlock Holmes and Dr. John Watson's adventures in 21st Century London. A thrilling, funny, fast-paced contemporary reimagining of the Arthur Conan Doyle classic.</p>",
-//       "updated": 1586907935,
-//       "_links": {
-//         "self": {
-//           "href": "http://api.tvmaze.com/shows/335"
-//         },
-//         "previousepisode": {
-//           "href": "http://api.tvmaze.com/episodes/1004191"
-//         }
-//       }
-//     },
+    {
+      "id": 335,
+      "url": "http://www.tvmaze.com/shows/335/sherlock",
+      "name": "Sherlock",
+      "type": "Scripted",
+      "language": "English",
+      "genres": [
+        "Drama",
+        "Crime",
+        "Mystery"
+      ],
+      "status": "To Be Determined",
+      "runtime": 90,
+      "premiered": "2010-07-25",
+      "officialSite": "http://www.bbc.co.uk/programmes/b018ttws",
+      "schedule": {
+        "time": "21:00",
+        "days": [
+          "Sunday"
+        ]
+      },
+      "rating": {
+        "average": 9.1
+      },
+      "weight": 99,
+      "network": {
+        "id": 12,
+        "name": "BBC One",
+        "country": {
+          "name": "United Kingdom",
+          "code": "GB",
+          "timezone": "Europe/London"
+        }
+      },
+      "webChannel": null,
+      "externals": {
+        "tvrage": 23433,
+        "thetvdb": 176941,
+        "imdb": "tt1475582"
+      },
+      "image": {
+        "medium": "http://static.tvmaze.com/uploads/images/medium_portrait/171/428042.jpg",
+        "original": "http://static.tvmaze.com/uploads/images/original_untouched/171/428042.jpg"
+      },
+      "summary": "<p>Sherlock Holmes and Dr. John Watson's adventures in 21st Century London. A thrilling, funny, fast-paced contemporary reimagining of the Arthur Conan Doyle classic.</p>",
+      "updated": 1586907935,
+      "_links": {
+        "self": {
+          "href": "http://api.tvmaze.com/shows/335"
+        },
+        "previousepisode": {
+          "href": "http://api.tvmaze.com/episodes/1004191"
+        }
+      }
+    },
 //     {
 //       "id": 251,
 //       "url": "http://www.tvmaze.com/shows/251/downton-abbey",
