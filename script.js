@@ -8,18 +8,18 @@ function setup() {
   getShowId(allShows)
   displayAllShows(allShows);
 }
-function showcount(count){
+function showcount(count) {
   let countElement = document.getElementById('countmovie');
   countElement.innerHTML = `${count}`;
 }
 
-function displayAllShows(displayAll){
-let container = document.querySelector('.container');
+function displayAllShows(displayAll) {
+  let container = document.querySelector('.container');
 
-displayAll.forEach(show => {
-  let image = show.image !== null ? show.image.medium : ""  
-  container.innerHTML +=
-   `<div class = "showcard">
+  displayAll.forEach(show => {
+    let image = show.image !== null ? show.image.medium : ""
+    container.innerHTML +=
+      `<div class = "showcard">
     <div class="showname">
         <h1 class="header" data-id="${show.id}">${show.name}</h1>
         <image src =${image} alt = ${show.name} />
@@ -36,58 +36,59 @@ displayAll.forEach(show => {
   </div>`
 
 
-})
+  })
   let countElement = document.getElementById('countmovie');
   let countElementtwo = document.getElementById('countallmovie');
   countElement.innerHTML = `${displayAll.length}`;
   countElementtwo.innerHTML = `${displayAll.length} Shows`;
   let headers = document.querySelectorAll('.header')
 
-headers.forEach(header => {
-  header.addEventListener('click', function(e){
-    let selectvalue= e.currentTarget.dataset
-    let selectValue  = selectvalue.id;
-    const rootElem = document.getElementById("root");
-    selectmovies.style.display = "";
-    container.style.display = "none"
-    rootElem.innerHTML = ""
-    if (selectValue) {
-      let url = `https://api.tvmaze.com/shows/${selectValue}/episodes`
-      getFactAjax(url)
-    }
+  headers.forEach(header => {
+    header.addEventListener('click', function (e) {
+      let selectvalue = e.currentTarget.dataset
+      let selectValue = selectvalue.id;
+      const rootElem = document.getElementById("root");
+      selectmovies.style.display = "";
+      container.style.display = "none"
+      rootElem.innerHTML = ""
+      if (selectValue) {
+        let url = `https://api.tvmaze.com/shows/${selectValue}/episodes`
+        getFactAjax(url)
+      }
     })
-})
-
-let input = document.querySelector('#moviesearch');
-input.addEventListener('input', findepisode)
-
-function findepisode(e) {
-  let showcards = document.querySelectorAll(".showcard");
-  let optionsvalue = e.currentTarget.value.toLowerCase();
-  let count = 0;
-  let message = document.querySelector(".message");
-  let footer = document.querySelector(".footer");
-  showcards.forEach(card => {
-    let cardValue = card.textContent.toLowerCase()
-    if (cardValue.includes(optionsvalue)) {
-      message.style.display = "none";
-      card.style.display = "";
-      count++
-    showcount(count)
-    } else if (optionsvalue === "") {
-      reset();
-    showcount(count)
-    } else {
-      card.style.display = "none";
-    showcount(count)
-    }
   })
-  if (count == 0) {
-    message.style.display = "";
-    message.style.display = "margin-top:100px;"
-    footer.style.display = "none"
+
+  let input = document.querySelector('#moviesearch');
+  input.addEventListener('input', findepisode)
+
+  function findepisode(e) {
+    let showcards = document.querySelectorAll(".showcard");
+    let optionsvalue = e.currentTarget.value.toLowerCase();
+    let count = 0;
+    let message = document.querySelector(".message");
+    let footer = document.querySelector(".footer");
+    showcards.forEach(card => {
+      let cardValue = card.textContent.toLowerCase()
+      if (cardValue.includes(optionsvalue)) {
+        message.style.display = "none";
+        card.style.display = "";
+        count++
+        showcount(count)
+      } else if (optionsvalue === "") {
+        reset();
+        showcount(count)
+      } else {
+        card.style.display = "none";
+        showcount(count)
+      }
+    })
+    if (count == 0) {
+      message.style.display = "";
+      message.style.display = "margin-top:100px;"
+      footer.style.display = "none"
+    }
   }
-}}
+}
 
 
 
@@ -138,12 +139,12 @@ function getShowId(allShows) {
   }
 }
 let back = document.querySelector('.back')
-back.addEventListener('click',reset)
+back.addEventListener('click', reset)
 
 
 function getFactAjax(url) {
   let back = document.querySelector('.back')
-    back.style.display = "";
+  back.style.display = "";
   fetch(url)
     .then(response => {
       if (!response.ok) {
@@ -195,7 +196,7 @@ function makePageForEpisodes(episodeList) {
   })
 
   let input = document.querySelector('#moviesearch');
-  
+
   input.addEventListener('input', findepisode)
   input.addEventListener('click', findepisode)
   input.addEventListener('click', resetsearch)
@@ -205,7 +206,7 @@ function makePageForEpisodes(episodeList) {
     let select = document.querySelector('#selectmovies');
     select.selectedIndex = 0
   }
-  
+
 
 
   function findepisode(e) {
